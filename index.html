@@ -1,93 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ali Hatem – Cybersecurity Specialist</title>
-  <meta name="description" content="Personal portfolio of Ali Hatem – Cybersecurity Specialist, researcher, and ethical hacker. Explore my projects, achievements, and contact info.">
-  
-  <!-- Basic Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline';">
-  
-  <link rel="icon" href="assets/images/favicon.png">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مدونتي — Writeups & Projects</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Marked.js لتحويل Markdown إلى HTML أثناء العرض -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <main class="container">
-    
-    <!-- Hero Section -->
+  <div class="container">
     <header class="hero">
-      <img class="avatar" src="assets/images/ali.png" alt="Ali Hatem profile picture">
-      <h1>Ali Hatem</h1>
-      <p class="tagline">Cybersecurity Specialist · Ethical Hacker · Researcher</p>
+      <div class="hero-left">
+        <img src="avatar.png" alt="صورتي" class="avatar" onerror="this.style.display='none'"/>
+        <h1 id="name">اسمك هنا</h1>
+        <p id="tagline">مقدِّمة قصيرة عنك — محلل أمني، مهتم بالاختراق الأخلاقي وكتابة التقارير.</p>
+        <div class="socials" id="socials">
+          <!-- أيقونات التواصل تظهر هنا ديناميكياً -->
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="live-card">
+          <h3>الحالة الحية</h3>
+          <p id="live-status">توجد <strong id="total-rooms">0</strong> تقارير لغرف TryHackMe.</p>
+          <div class="controls">
+            <input id="search" placeholder="ابحث عن غرفة أو كلمة..." />
+            <select id="filter-platform">
+              <option value="">كل المنصات</option>
+              <option value="tryhackme">TryHackMe</option>
+              <option value="other">أخرى</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- About Section -->
-    <section class="card about">
-      <h2>About Me</h2>
-      <p>Hello! I am Ali Hatem, a passionate cybersecurity specialist and ethical hacker. I work on penetration testing, vulnerability research, and share knowledge to help others improve their security skills.</p>
-      <p>I have experience with Kali Linux, Python, Metasploit, and various security tools. I continuously explore new threats, write tutorials, and contribute to open-source security projects.</p>
-    </section>
+    <main>
+      <section class="sections">
+        <div class="section-card">
+          <h2>Writeups — غرف TryHackMe</h2>
+          <p class="muted">هنا تجد تقاريرك المجمعة حسب الملف. اضف تقارير جديدة في مجلد <code>/rooms/</code>.</p>
+          <div id="rooms-stats" class="stats">
+            <!-- إحصائيات سريعة تظهر هنا -->
+          </div>
+          <div id="rooms-list" class="cards">
+            <!-- بطاقات الغرف تظهر هنا -->
+          </div>
+        </div>
 
-    <!-- Skills Section -->
-    <section class="card skills">
-      <h2>Skills & Expertise</h2>
-      <ul>
-        <li>Penetration Testing & Ethical Hacking</li>
-        <li>Network & Web Application Security</li>
-        <li>Vulnerability Analysis & Exploit Development</li>
-        <li>Kali Linux & Security Tools</li>
-        <li>Python Scripting for Security Automation</li>
-        <li>Cloud Security Awareness</li>
-      </ul>
-    </section>
+        <div class="section-card">
+          <h2>نبذة عنّي</h2>
+          <p id="about">
+            اكتب هنا التعريف التفصيلي عنك: خبرتك، أدواتك المفضلة، هدفك المهني، أمثلة على مشاريع سابقة.
+          </p>
+        </div>
+      </section>
+    </main>
 
-    <!-- Achievements Section -->
-    <section class="card achievements">
-      <h2>Achievements</h2>
-      <ul>
-        <li>Certified Cybersecurity Practitioner</li>
-        <li>Contributor to multiple open-source security projects</li>
-        <li>CTF (Capture The Flag) competition participant and winner</li>
-        <li>Published tutorials and write-ups in cybersecurity</li>
-      </ul>
-    </section>
-
-    <!-- Projects / Portfolio Section -->
-    <section class="card projects">
-      <h2>Projects & Publications</h2>
-      <ul>
-        <li><a href="#">Security Hardening Guide for SSH</a></li>
-        <li><a href="#">Content Security Policy (CSP) Best Practices</a></li>
-        <li><a href="#">Local Privilege Escalation CTF Writeup</a></li>
-        <li><a href="#">Open-Source Security Tools on GitHub</a></li>
-      </ul>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="card contact">
-      <h2>Contact & Social Media</h2>
-      <p>Feel free to reach out for collaboration, questions, or consulting.</p>
-      <p>
-        <a href="https://github.com/alia" target="_blank" rel="noopener noreferrer">GitHub</a> · 
-        <a href="https://linkedin.com/in/alia" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
-        <a href="mailto:alia231as@gmail.com">Email</a> · 
-        <a href="https://twitter.com/alia" target="_blank" rel="noopener noreferrer">Twitter</a> · 
-        <a href="https://medium.com/@alia" target="_blank" rel="noopener noreferrer">Medium</a> ·
-        <a href="https://www.youtube.com/@alia" target="_blank" rel="noopener noreferrer">YouTube</a>
-      </p>
-    </section>
-
-    <!-- Footer -->
     <footer>
-      © <span id="year"></span> Ali Hatem — All rights reserved
+      <p>© <span id="year"></span> — مدونتي الشخصية</p>
     </footer>
+  </div>
 
-  </main>
-
-  <!-- Script for updating year -->
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <!-- نافذة عرض سريعة للتقرير (Modal) -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button id="modal-close" class="btn-close">×</button>
+      <div id="modal-body">جارٍ التحميل…</div>
+      <div class="modal-actions">
+        <a id="open-full" class="btn" target="_blank" rel="noopener">افتح التقرير بالكامل</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
