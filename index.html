@@ -137,8 +137,9 @@
   <strong>Aladeb | Cybersecurity</strong>
   <nav>
     <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('about')">About</a>
     <a href="#" onclick="showPage('writeups')">Write-ups</a>
-    <a href="#" onclick="showPage('labs')">Labs</a>
+    <a href="#contact" onclick="scrollToContact()">Contact</a>
   </nav>
 </header>
 
@@ -164,6 +165,38 @@
 
       <div class="card">
         <img src="profile.jpg" alt="Profile Image" />
+      </div>
+    </div>
+
+    <!-- CONTACT CARD -->
+    <div id="contact" class="card" style="margin-top:40px;">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="card option">🐦 <strong>X (Twitter)</strong></div>
+        <div class="card option">📸 <strong>Instagram</strong></div>
+        <div class="card option">▶️ <strong>YouTube</strong></div>
+        <div class="card option">💼 <strong>LinkedIn</strong></div>
+        <div class="card option">🟢 <strong>TryHackMe</strong></div>
+        <div class="card option">⬛ <strong>Hack The Box</strong></div>
+      </div>
+    </div>
+
+    <!-- ACHIEVEMENTS -->
+    <div class="card" style="margin-top:40px;">
+      <h2>Labs & Achievements</h2>
+      <div class="grid">
+        <div class="card option">
+          <h3>TryHackMe Write-ups</h3>
+          <p>Completed rooms and methodologies.</p>
+        </div>
+        <div class="card option">
+          <h3>Hack The Box Write-ups</h3>
+          <p>Machines, privilege escalation and exploits.</p>
+        </div>
+        <div class="card option">
+          <h3>General Challenges</h3>
+          <p>CTFs, notes, and personal research.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -216,6 +249,11 @@
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
+  }
+
+  function scrollToContact() {
+    const el = document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
 </script>
 
