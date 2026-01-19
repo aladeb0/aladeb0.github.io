@@ -8,26 +8,46 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+/* =====================================================
+   GLOBAL RESET
+===================================================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+}
+
 body{
   font-family:Inter,Arial,sans-serif;
   background:#0b0f14;
   color:#e5e7eb;
-  height:100vh;
   display:grid;
   grid-template-columns:260px 1fr;
   overflow:hidden;
 }
-a{text-decoration:none;color:inherit}
 
-/* ===== BACKGROUND ===== */
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* =====================================================
+   INTERACTIVE BACKGROUND
+===================================================== */
 #bg{
   position:fixed;
   inset:0;
   z-index:0;
 }
 
-/* ===== SIDEBAR ===== */
+/* =====================================================
+   SIDEBAR (DESKTOP)
+===================================================== */
 .sidebar{
   background:#020617;
   padding:28px 22px;
@@ -35,22 +55,43 @@ a{text-decoration:none;color:inherit}
   flex-direction:column;
   gap:28px;
   border-right:1px solid #111827;
-  z-index:2;
+  z-index:3;
 }
-.profile{text-align:center}
+
+.profile{
+  text-align:center;
+}
+
 .profile img{
-  width:110px;height:110px;
+  width:110px;
+  height:110px;
   border-radius:50%;
   object-fit:cover;
   margin-bottom:14px;
   border:2px solid #22c55e;
 }
-.profile h2{font-size:1.1rem}
-.profile p{font-size:.85rem;color:#9ca3af}
 
-.menu{display:flex;flex-direction:column;gap:6px}
+.profile h2{
+  font-size:1.1rem;
+}
+
+.profile p{
+  font-size:.85rem;
+  color:#9ca3af;
+}
+
+/* =====================================================
+   MENU
+===================================================== */
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
 .menu button{
-  background:none;border:none;
+  background:none;
+  border:none;
   color:#cbd5f5;
   padding:12px 14px;
   border-radius:10px;
@@ -61,44 +102,66 @@ a{text-decoration:none;color:inherit}
   font-size:.95rem;
   transition:.2s;
 }
+
 .menu button:hover,
 .menu button.active{
   background:#111827;
   color:#22c55e;
 }
 
+/* =====================================================
+   SIDEBAR FOOTER ICONS
+===================================================== */
 .sidebar-footer{
   margin-top:auto;
   display:flex;
   justify-content:center;
   gap:18px;
 }
+
 .sidebar-footer a{
   color:#9ca3af;
   font-size:1.25rem;
   transition:.2s;
 }
-.sidebar-footer a:hover{color:#22c55e}
 
-/* ===== MAIN ===== */
+.sidebar-footer a:hover{
+  color:#22c55e;
+}
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
 .main{
   padding:36px 48px;
   overflow-y:auto;
   z-index:2;
   position:relative;
 }
-.view{display:none}
-.view.active{display:block}
 
-/* ===== SEARCH BAR ===== */
+.view{
+  display:none;
+}
+
+.view.active{
+  display:block;
+}
+
+/* =====================================================
+   SEARCH BAR (STICKY HEADER)
+===================================================== */
 .search-bar{
   position:sticky;
   top:0;
-  z-index:5;
+  z-index:10;
+  background:rgba(11,15,20,.85);
+  backdrop-filter:blur(6px);
+  padding:12px 0 18px;
+  margin-bottom:24px;
   display:flex;
   justify-content:flex-end;
-  margin-bottom:26px;
 }
+
 .search-box{
   background:#020617;
   border:1px solid #111827;
@@ -107,30 +170,42 @@ a{text-decoration:none;color:inherit}
   display:flex;
   align-items:center;
   gap:10px;
-  color:#9ca3af;
-  min-width:260px;
-}
-.search-box i{color:#22c55e}
-.search-box input{
-  background:none;border:none;outline:none;
-  color:#e5e7eb;width:100%;
+  min-width:280px;
 }
 
-/* ===== HOME ===== */
+.search-box i{
+  color:#22c55e;
+}
+
+.search-box input{
+  background:none;
+  border:none;
+  outline:none;
+  color:#e5e7eb;
+  width:100%;
+}
+
+/* =====================================================
+   HOME
+===================================================== */
 .hero{
   margin-bottom:26px;
 }
+
 .hero h1{
   font-size:2.7rem;
   margin-bottom:12px;
 }
+
 .hero p{
   max-width:760px;
   color:#9ca3af;
   line-height:1.9;
 }
 
-/* ===== GREEN DIVIDER ===== */
+/* =====================================================
+   DIVIDER
+===================================================== */
 .divider{
   width:60%;
   height:1px;
@@ -142,12 +217,15 @@ a{text-decoration:none;color:inherit}
   box-shadow:0 0 22px rgba(34,197,94,.6);
 }
 
-/* ===== CARDS ===== */
+/* =====================================================
+   CARDS
+===================================================== */
 .cards{
   display:flex;
   flex-direction:column;
   gap:26px;
 }
+
 .card{
   background:#020617;
   border-radius:20px;
@@ -155,6 +233,7 @@ a{text-decoration:none;color:inherit}
   position:relative;
   transition:.3s;
 }
+
 .card::before{
   content:"";
   position:absolute;
@@ -165,41 +244,63 @@ a{text-decoration:none;color:inherit}
     transparent 65%);
   opacity:.55;
 }
+
 .card:hover{
   transform:translateY(-6px);
   box-shadow:0 0 45px rgba(34,197,94,.4);
 }
-.card h3{margin-bottom:10px}
-.card p{color:#9ca3af;line-height:1.7}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#9ca3af;
+  line-height:1.7;
+}
+
 .card-meta{
   margin-top:14px;
   font-size:.8rem;
   color:#6b7280;
 }
 
-/* ===== WRITEUPS ===== */
-.writeup-section{margin-bottom:54px}
+/* =====================================================
+   WRITEUPS
+===================================================== */
+.writeup-section{
+  margin-bottom:54px;
+}
+
 .writeup-section h2{
   margin-bottom:18px;
   color:#22c55e;
 }
+
 .writeup-list{
   display:flex;
   flex-direction:column;
   gap:18px;
 }
 
-/* ===== ABOUT ===== */
+/* =====================================================
+   ABOUT
+===================================================== */
 .about{
   max-width:900px;
   line-height:1.95;
 }
+
 .about ul{
   margin-top:16px;
   padding-left:18px;
   color:#9ca3af;
 }
-.about li{margin-bottom:8px}
+
+.about li{
+  margin-bottom:8px;
+}
+
 .tags span{
   display:inline-block;
   background:#052e16;
@@ -210,13 +311,16 @@ a{text-decoration:none;color:inherit}
   font-size:.85rem;
 }
 
-/* ===== CONTACT ===== */
+/* =====================================================
+   CONTACT
+===================================================== */
 .contact-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
   max-width:900px;
 }
+
 .contact-item{
   display:flex;
   align-items:center;
@@ -226,44 +330,62 @@ a{text-decoration:none;color:inherit}
   border-radius:14px;
   transition:.3s;
 }
+
 .contact-item:hover{
   transform:translateY(-6px);
   box-shadow:0 0 28px rgba(34,197,94,.35);
 }
+
 .contact-item i{
   font-size:1.4rem;
   color:#22c55e;
 }
 
-/* ===== MOBILE FIX ===== */
+/* =====================================================
+   MOBILE & TABLET FIX (IMPORTANT)
+===================================================== */
 @media(max-width:900px){
+
   body{
     grid-template-columns:1fr;
   }
+
   .sidebar{
     flex-direction:row;
     align-items:center;
     justify-content:space-between;
-    padding:14px 18px;
+    padding:14px 16px;
+    border-right:none;
+    border-bottom:1px solid #111827;
   }
-  .profile{display:none}
+
+  .profile{
+    display:none;
+  }
+
   .menu{
     flex-direction:row;
-    gap:8px;
+    gap:6px;
   }
+
   .menu button{
-    font-size:.85rem;
-    padding:10px;
+    font-size:.8rem;
+    padding:8px 10px;
   }
+
   .main{
     padding:20px;
   }
+
   .search-bar{
     justify-content:center;
   }
+
   .search-box{
     width:100%;
+    min-width:unset;
   }
+
   .contact-list{
     grid-template-columns:1fr;
   }
@@ -272,9 +394,11 @@ a{text-decoration:none;color:inherit}
 </head>
 
 <body>
+
 <canvas id="bg"></canvas>
 
 <aside class="sidebar">
+
   <div class="profile">
     <img src="assets/images/luffy.jpg">
     <h2>Aladeb Ali</h2>
@@ -297,19 +421,22 @@ a{text-decoration:none;color:inherit}
   </div>
 
   <div class="sidebar-footer">
-    <a href="https://github.com/USERNAME" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/USERNAME" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a href="https://t.me/USERNAME" target="_blank"><i class="fab fa-telegram"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-telegram"></i></a>
   </div>
+
 </aside>
 
 <main class="main">
 
+<!-- HOME -->
 <section id="home" class="view active">
+
   <div class="search-bar">
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search labs, writeups..." onkeyup="liveSearch(this)">
+      <input type="text" placeholder="Search labs, writeups..." oninput="liveSearch(this)">
     </div>
   </div>
 
@@ -317,8 +444,7 @@ a{text-decoration:none;color:inherit}
     <h1>Red Team Portfolio</h1>
     <p>
       Offensive security practitioner specialized in real-world attack simulation,
-      Active Directory exploitation, web application security, and post-exploitation
-      techniques. All labs are documented with professional technical writeups.
+      Active Directory exploitation, web application security, and post-exploitation techniques.
     </p>
   </div>
 
@@ -327,71 +453,56 @@ a{text-decoration:none;color:inherit}
   <div class="cards">
     <a href="#" class="card searchable">
       <h3>Hack The Box – Artificial</h3>
-      <p>Complete compromise of a Linux host including enumeration, credential reuse,
-      privilege escalation and operational notes.</p>
-      <div class="card-meta">HTB · Linux · PrivEsc</div>
+      <p>Linux compromise, enumeration, privilege escalation.</p>
+      <div class="card-meta">HTB · Linux</div>
     </a>
 
     <a href="#" class="card searchable">
       <h3>TryHackMe – Active Directory</h3>
-      <p>Kerberos abuse, SMB relay, lateral movement, and domain administrator takeover.</p>
-      <div class="card-meta">THM · AD · Red Team</div>
+      <p>Kerberos, SMB relay, domain takeover.</p>
+      <div class="card-meta">THM · AD</div>
     </a>
   </div>
+
 </section>
 
+<!-- WRITEUPS -->
 <section id="writeups" class="view">
+
   <div class="search-bar">
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search writeups..." onkeyup="liveSearch(this)">
+      <input type="text" placeholder="Search writeups..." oninput="liveSearch(this)">
     </div>
   </div>
 
   <div class="writeup-section">
     <h2>TryHackMe</h2>
     <div class="writeup-list">
-      <a href="#" class="card searchable">Network Services Deep Dive</a>
       <a href="#" class="card searchable">Windows Privilege Escalation</a>
+      <a href="#" class="card searchable">Network Services</a>
     </div>
   </div>
 
   <div class="writeup-section">
     <h2>Hack The Box</h2>
     <div class="writeup-list">
-      <a href="#" class="card searchable">Linux Enumeration Methodology</a>
-      <a href="#" class="card searchable">Active Directory Attacks</a>
+      <a href="#" class="card searchable">Linux Enumeration</a>
+      <a href="#" class="card searchable">AD Attacks</a>
     </div>
   </div>
 
-  <div class="writeup-section">
-    <h2>Notes & Research</h2>
-    <div class="writeup-list">
-      <a href="#" class="card searchable">Web Exploitation Notes</a>
-      <a href="#" class="card searchable">Red Team OPSEC</a>
-    </div>
-  </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="view">
   <div class="about">
     <h2>About Me</h2>
-    <p>
-      Red Team operator with hands-on experience in offensive security labs and
-      enterprise-style attack paths. Focused on realistic adversary simulation.
-    </p>
-    <ul>
-      <li>Active Directory attacks & lateral movement</li>
-      <li>Linux & Windows privilege escalation</li>
-      <li>Web application exploitation</li>
-    </ul>
-    <div class="tags">
-      <span>Red Team</span><span>Pentesting</span><span>AD</span>
-      <span>Linux</span><span>Web</span>
-    </div>
+    <p>Red Team operator focused on realistic adversary simulation.</p>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="view">
   <h2>Contact</h2>
   <div class="contact-list">
@@ -407,6 +518,9 @@ a{text-decoration:none;color:inherit}
 </main>
 
 <script>
+/* =====================================================
+   VIEW SWITCHER
+===================================================== */
 function showView(id,btn){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -414,15 +528,21 @@ function showView(id,btn){
   btn.classList.add('active');
 }
 
-/* ===== LIVE SEARCH ===== */
+/* =====================================================
+   LIVE SEARCH (REAL)
+===================================================== */
 function liveSearch(input){
-  const query=input.value.toLowerCase();
+  const q = input.value.toLowerCase();
   document.querySelectorAll('.searchable').forEach(el=>{
-    el.style.display=el.innerText.toLowerCase().includes(query)?"block":"none";
+    el.style.display = el.innerText.toLowerCase().includes(q)
+      ? "block"
+      : "none";
   });
 }
 
-/* ===== INTERACTIVE BACKGROUND ===== */
+/* =====================================================
+   INTERACTIVE BACKGROUND
+===================================================== */
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
 let w,h,pts=[],mouse={x:0,y:0};
@@ -431,9 +551,10 @@ function resize(){
   w=canvas.width=innerWidth;
   h=canvas.height=innerHeight;
 }
-resize();onresize=resize;
+resize();
+addEventListener("resize",resize);
 
-for(let i=0;i<150;i++){
+for(let i=0;i<160;i++){
   pts.push({
     x:Math.random()*w,
     y:Math.random()*h,
@@ -452,18 +573,20 @@ function draw(){
   for(let p of pts){
     let dx=p.x-mouse.x,dy=p.y-mouse.y;
     let dist=Math.hypot(dx,dy);
-    if(dist<150){
+    if(dist<140){
       p.vx+=dx/dist*0.01;
       p.vy+=dy/dist*0.01;
     }
-    p.x+=p.vx;p.y+=p.vy;
+    p.x+=p.vx;
+    p.y+=p.vy;
+
     if(p.x<0||p.x>w)p.vx*=-1;
     if(p.y<0||p.y>h)p.vy*=-1;
 
     for(let q of pts){
       let d=Math.hypot(p.x-q.x,p.y-q.y);
-      if(d<150){
-        ctx.strokeStyle=`rgba(255,255,255,${(1-d/150)*0.12})`;
+      if(d<140){
+        ctx.strokeStyle=`rgba(255,255,255,${(1-d/140)*0.12})`;
         ctx.beginPath();
         ctx.moveTo(p.x,p.y);
         ctx.lineTo(q.x,q.y);
