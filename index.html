@@ -1,287 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aladeb Ahmad | Red Team Portfolio</title>
+<meta charset="UTF-8">
+<title>Red Team Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <style>
-    /* ===== RESET ===== */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+:root {
+  --bg: #0b0d10;
+  --panel: #11141a;
+  --border: #1e232e;
+  --text: #d6d6d6;
+  --muted: #9aa0aa;
+  --green: #00ff88;
+}
 
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: #0b0f14;
-      color: #e5e7eb;
-      height: 100vh;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-    }
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui;
+  background: radial-gradient(circle at top, #10141c, var(--bg));
+  color: var(--text);
+  overflow-x: hidden;
+}
 
-    a { color: inherit; text-decoration: none; }
+/* Animated background */
+body::before {
+  content:"";
+  position: fixed;
+  inset:0;
+  background:
+    repeating-linear-gradient(120deg,
+      rgba(0,255,136,.03) 0px,
+      rgba(0,255,136,.03) 1px,
+      transparent 40px);
+  animation: bgmove 20s linear infinite;
+  pointer-events:none;
+}
+@keyframes bgmove {
+  from { transform: translateX(0); }
+  to { transform: translateX(200px); }
+}
 
-    /* ===== SIDEBAR ===== */
-    .sidebar {
-      background: #020617;
-      padding: 28px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      border-right: 1px solid #111827;
-    }
+/* ===== Layout ===== */
+.wrapper {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
 
-    .profile {
-      text-align: center;
-    }
+aside {
+  background: #0e1117;
+  padding: 25px;
+  border-right: 1px solid var(--border);
+}
 
-    .profile img {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 14px;
-    }
+main {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
 
-    .profile h2 {
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-    }
+/* ===== Sidebar ===== */
+.profile {
+  text-align: center;
+}
+.profile img {
+  width: 110px;
+  border-radius: 50%;
+}
+.profile h2 {
+  margin: 15px 0 5px;
+}
+.profile p {
+  color: var(--muted);
+  font-size: 13px;
+}
 
-    .profile p {
-      font-size: 0.85rem;
-      color: #9ca3af;
-    }
+nav {
+  margin-top: 30px;
+}
+nav a {
+  display: block;
+  padding: 12px 14px;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+}
+nav a:hover {
+  background: #151a22;
+  color: var(--green);
+}
 
-    .menu {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+/* ===== Sections ===== */
+section {
+  display: none;
+}
+section.active {
+  display: block;
+}
 
-    .menu button {
-      background: none;
-      border: none;
-      color: #cbd5f5;
-      padding: 12px 14px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: 0.2s;
-    }
+/* ===== Cards ===== */
+.card {
+  background: linear-gradient(145deg, #11141a, #0c0f14);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 22px;
+  position: relative;
+  cursor: pointer;
+  transition: .35s;
+}
+.card::after {
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius: 14px;
+  background: radial-gradient(circle, rgba(0,255,136,.25), transparent 60%);
+  opacity:0;
+  transition:.35s;
+  z-index:-1;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.card:hover::after {
+  opacity:1;
+}
+.card h3 {
+  margin:0 0 8px;
+}
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
 
-    .menu button:hover,
-    .menu button.active {
-      background: #111827;
-      color: #22c55e;
-    }
+/* ===== Tags ===== */
+.tags span {
+  display:inline-block;
+  background: rgba(0,255,136,.15);
+  color: var(--green);
+  padding:6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin:5px 5px 0 0;
+}
 
-    .sidebar-footer {
-      margin-top: auto;
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-    }
+/* ===== Social ===== */
+.social {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 14px;
+}
+.social a {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  border-radius:12px;
+  background: var(--panel);
+  color: var(--text);
+  text-decoration:none;
+  transition:.3s;
+}
+.social a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(0,255,136,.25);
+  color: var(--green);
+}
 
-    .sidebar-footer i {
-      font-size: 1.1rem;
-      color: #9ca3af;
-      transition: 0.2s;
-    }
-
-    .sidebar-footer i:hover { color: #22c55e; }
-
-    /* ===== MAIN ===== */
-    .main {
-      padding: 40px 48px;
-      overflow-y: auto;
-    }
-
-    .view { display: none; }
-    .view.active { display: block; }
-
-    /* ===== HOME / WRITEUPS ===== */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 26px;
-    }
-
-    .card {
-      background: #020617;
-      border-radius: 16px;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 140px;
-      transition: 0.25s;
-    }
-
-    .card:hover { transform: translateY(-6px); }
-
-    .card-content {
-      padding: 22px;
-    }
-
-    .card h3 { margin-bottom: 8px; }
-    .card p { font-size: 0.9rem; color: #9ca3af; }
-
-    .card-meta {
-      margin-top: 14px;
-      font-size: 0.75rem;
-      color: #6b7280;
-    }
-
-    .card-img {
-      background: #020617;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      color: #22c55e;
-    }
-
-    /* ===== ABOUT ===== */
-    .about {
-      max-width: 900px;
-      line-height: 1.8;
-    }
-
-    .tags span {
-      display: inline-block;
-      background: #052e16;
-      color: #22c55e;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin: 6px 6px 0 0;
-      font-size: 0.85rem;
-    }
-
-    /* ===== CONTACT ===== */
-    .contact-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      max-width: 800px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: #020617;
-      padding: 16px 20px;
-      border-radius: 12px;
-    }
-
-    .contact-item i { font-size: 1.4rem; }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      body { grid-template-columns: 1fr; }
-      .sidebar { position: sticky; top: 0; z-index: 50; }
-    }
-  </style>
+/* ===== Writeups Page ===== */
+.group {
+  margin-bottom: 40px;
+}
+.group h2 {
+  margin-bottom: 16px;
+  color: var(--green);
+}
+</style>
 </head>
+
 <body>
+<div class="wrapper">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="profile">
-      <img src="assets/images/luffy.jpg" alt="Profile" />
-      <h2>Aladeb ali</h2>
-      <p>Red Team / Pentester</p>
+<aside>
+  <div class="profile">
+    <img src="assets/images/luffy.jpg">
+    <h2>mrci0x1</h2>
+    <p>Red Team | Penetration Tester</p>
+  </div>
+
+  <nav>
+    <a onclick="show('home')">Home</a>
+    <a onclick="show('about')">About</a>
+    <a onclick="show('writeups')">Writeups</a>
+    <a onclick="show('contact')">Connect</a>
+  </nav>
+</aside>
+
+<main>
+
+<section id="home" class="active">
+  <div class="card" onclick="location.href='#'">
+    <h3>HackTheBox – Artificial</h3>
+    <p>Full enumeration, privilege escalation, and clean exploitation path.</p>
+  </div>
+
+  <div class="card" onclick="location.href='#'">
+    <h3>TryHackMe – Active Directory</h3>
+    <p>Attack chains, Kerberoasting, and lateral movement.</p>
+  </div>
+
+  <div class="card" onclick="location.href='#'">
+    <h3>eWPTX Notes</h3>
+    <p>JWT abuse, SQLi, NoSQLi & advanced web exploitation.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="card">
+    <h3>About Me</h3>
+    <p>
+      I am a passionate Red Team operator and penetration tester focused on real-world attack simulations.
+      Ranked Top 1% on TryHackMe with over 300 completed labs, I specialize in web exploitation, Active Directory,
+      and post-exploitation techniques. I continuously sharpen my skills through labs, certifications,
+      and hands-on research while documenting everything in detailed writeups.
+    </p>
+    <div class="tags">
+      <span>Red Team</span><span>Pentesting</span><span>AD</span>
+      <span>Web Exploitation</span><span>CTFs</span>
     </div>
+  </div>
+</section>
 
-    <div class="menu">
-      <button class="active" onclick="showView('home', this)"><i class="fa-solid fa-house"></i> Home</button>
-      <button onclick="showView('writeups', this)"><i class="fa-solid fa-pen"></i> Writeups</button>
-      <button onclick="showView('about', this)"><i class="fa-solid fa-user"></i> About</button>
-      <button onclick="showView('contact', this)"><i class="fa-solid fa-link"></i> Contact</button>
-    </div>
+<section id="contact">
+  <div class="social">
+    <a href="#"><i class="fab fa-github"></i> GitHub</a>
+    <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a href="#"><i class="fab fa-x-twitter"></i> X</a>
+    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="#"><i class="fas fa-cube"></i> TryHackMe</a>
+    <a href="#"><i class="fas fa-box"></i> Hack The Box</a>
+  </div>
+</section>
 
-    <div class="sidebar-footer">
-      <i class="fa-brands fa-github"></i>
-      <i class="fa-brands fa-linkedin"></i>
-      <i class="fa-brands fa-x-twitter"></i>
-    </div>
-  </aside>
+<section id="writeups">
+  <div class="group">
+    <h2>TryHackMe Writeups</h2>
+    <div class="card">AD Labs & Privilege Escalation</div>
+    <div class="card">Linux Enumeration</div>
+  </div>
 
-  <!-- MAIN -->
-  <main class="main">
+  <div class="group">
+    <h2>Hack The Box Writeups</h2>
+    <div class="card">Artificial</div>
+    <div class="card">TombWatcher</div>
+  </div>
 
-    <!-- HOME -->
-    <section id="home" class="view active">
-      <div class="cards">
-        <div class="card">
-          <div class="card-content">
-            <h3>HackTheBox Artificial</h3>
-            <p>Full machine writeup covering enumeration, exploitation and privilege escalation.</p>
-            <div class="card-meta">HTB · Linux</div>
-          </div>
-          <div class="card-img">HTB</div>
-        </div>
+  <div class="group">
+    <h2>General Writeups</h2>
+    <div class="card">Web Attacks</div>
+    <div class="card">Notes & Research</div>
+  </div>
+</section>
 
-        <div class="card">
-          <div class="card-content">
-            <h3>HackTheBox ali</h3>
-            <p>Full machine writeup covering enumeration, exploitation and privilege escalation.</p>
-            <div class="card-meta">THM · Linux . web </div>
-          </div>
-          <div class="card-img">HTB</div>
-        </div>
-      </div>
-    </section>
+</main>
+</div>
 
-    <!-- WRITEUPS -->
-    <section id="writeups" class="view">
-      <h2>Writeups</h2>
-      <p>All published labs and walkthroughs.</p>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="view">
-      <div class="about">
-        <h2>About Me</h2>
-        <p>
-          I am a Red Team operator and penetration testing enthusiast focused on hands-on, real-world offensive security.
-          Ranked Top 1% on TryHackMe with 300+ completed labs, specializing in web exploitation, Linux systems, and Active Directory attacks.
-        </p>
-        <div class="tags">
-          <span>Red Team</span><span>Penetration Testing</span><span>TryHackMe</span><span>Hack The Box</span>
-          <span>CTFs</span><span>Linux</span><span>Active Directory</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="view">
-      <h2>Contact & Platforms</h2>
-      <div class="contact-list">
-        <div class="contact-item"><i class="fa-brands fa-github"></i> GitHub</div>
-        <div class="contact-item"><i class="fa-brands fa-linkedin"></i> LinkedIn</div>
-        <div class="contact-item"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</div>
-        <div class="contact-item"><i class="fa-brands fa-instagram"></i> Instagram</div>
-        <div class="contact-item"><i class="fa-solid fa-terminal"></i> TryHackMe</div>
-        <div class="contact-item"><i class="fa-solid fa-cube"></i> Hack The Box</div>
-      </div>
-    </section>
-
-  </main>
-
-  <script>
-    function showView(id, btn) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-
-      document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
-  </script>
-
+<script>
+function show(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
 </body>
 </html>
