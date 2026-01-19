@@ -235,9 +235,38 @@ a{text-decoration:none;color:inherit}
   color:#22c55e;
 }
 
+/* ===== MOBILE FIX ===== */
 @media(max-width:900px){
-  body{grid-template-columns:1fr}
-  .contact-list{grid-template-columns:1fr}
+  body{
+    grid-template-columns:1fr;
+  }
+  .sidebar{
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 18px;
+  }
+  .profile{display:none}
+  .menu{
+    flex-direction:row;
+    gap:8px;
+  }
+  .menu button{
+    font-size:.85rem;
+    padding:10px;
+  }
+  .main{
+    padding:20px;
+  }
+  .search-bar{
+    justify-content:center;
+  }
+  .search-box{
+    width:100%;
+  }
+  .contact-list{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -247,8 +276,8 @@ a{text-decoration:none;color:inherit}
 
 <aside class="sidebar">
   <div class="profile">
-    <img src="profile.jpg">
-    <h2>Aladeb Ahmad</h2>
+    <img src="assets/images/luffy.jpg">
+    <h2>Aladeb Ali</h2>
     <p>Red Team Operator</p>
   </div>
 
@@ -280,7 +309,7 @@ a{text-decoration:none;color:inherit}
   <div class="search-bar">
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search labs, writeups...">
+      <input type="text" placeholder="Search labs, writeups..." onkeyup="liveSearch(this)">
     </div>
   </div>
 
@@ -296,14 +325,14 @@ a{text-decoration:none;color:inherit}
   <div class="divider"></div>
 
   <div class="cards">
-    <a href="#" class="card">
+    <a href="#" class="card searchable">
       <h3>Hack The Box – Artificial</h3>
       <p>Complete compromise of a Linux host including enumeration, credential reuse,
       privilege escalation and operational notes.</p>
       <div class="card-meta">HTB · Linux · PrivEsc</div>
     </a>
 
-    <a href="#" class="card">
+    <a href="#" class="card searchable">
       <h3>TryHackMe – Active Directory</h3>
       <p>Kerberos abuse, SMB relay, lateral movement, and domain administrator takeover.</p>
       <div class="card-meta">THM · AD · Red Team</div>
@@ -315,31 +344,31 @@ a{text-decoration:none;color:inherit}
   <div class="search-bar">
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search writeups">
+      <input type="text" placeholder="Search writeups..." onkeyup="liveSearch(this)">
     </div>
   </div>
 
   <div class="writeup-section">
     <h2>TryHackMe</h2>
     <div class="writeup-list">
-      <a href="#" class="card">Network Services Deep Dive</a>
-      <a href="#" class="card">Windows Privilege Escalation</a>
+      <a href="#" class="card searchable">Network Services Deep Dive</a>
+      <a href="#" class="card searchable">Windows Privilege Escalation</a>
     </div>
   </div>
 
   <div class="writeup-section">
     <h2>Hack The Box</h2>
     <div class="writeup-list">
-      <a href="#" class="card">Linux Enumeration Methodology</a>
-      <a href="#" class="card">Active Directory Attacks</a>
+      <a href="#" class="card searchable">Linux Enumeration Methodology</a>
+      <a href="#" class="card searchable">Active Directory Attacks</a>
     </div>
   </div>
 
   <div class="writeup-section">
     <h2>Notes & Research</h2>
     <div class="writeup-list">
-      <a href="#" class="card">Web Exploitation Notes</a>
-      <a href="#" class="card">Red Team OPSEC</a>
+      <a href="#" class="card searchable">Web Exploitation Notes</a>
+      <a href="#" class="card searchable">Red Team OPSEC</a>
     </div>
   </div>
 </section>
@@ -383,6 +412,14 @@ function showView(id,btn){
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.menu button').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
+}
+
+/* ===== LIVE SEARCH ===== */
+function liveSearch(input){
+  const query=input.value.toLowerCase();
+  document.querySelectorAll('.searchable').forEach(el=>{
+    el.style.display=el.innerText.toLowerCase().includes(query)?"block":"none";
+  });
 }
 
 /* ===== INTERACTIVE BACKGROUND ===== */
