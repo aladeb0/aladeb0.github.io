@@ -2,52 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Aladeb Ahmad | Red Team Portfolio</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-/* =====================================================
-   GLOBAL RESET
-===================================================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html,body{
-  width:100%;
-  height:100%;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:Inter,Arial,sans-serif;
   background:#0b0f14;
   color:#e5e7eb;
+  height:100vh;
   display:grid;
   grid-template-columns:260px 1fr;
   overflow:hidden;
 }
+a{text-decoration:none;color:inherit}
 
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-/* =====================================================
-   INTERACTIVE BACKGROUND
-===================================================== */
+/* ===== BACKGROUND ===== */
 #bg{
   position:fixed;
   inset:0;
   z-index:0;
 }
 
-/* =====================================================
-   SIDEBAR (DESKTOP)
-===================================================== */
+/* ===== SIDEBAR ===== */
 .sidebar{
   background:#020617;
   padding:28px 22px;
@@ -55,43 +35,22 @@ a{
   flex-direction:column;
   gap:28px;
   border-right:1px solid #111827;
-  z-index:3;
+  z-index:2;
 }
-
-.profile{
-  text-align:center;
-}
-
+.profile{text-align:center}
 .profile img{
-  width:110px;
-  height:110px;
+  width:110px;height:110px;
   border-radius:50%;
   object-fit:cover;
   margin-bottom:14px;
   border:2px solid #22c55e;
 }
+.profile h2{font-size:1.1rem}
+.profile p{font-size:.85rem;color:#9ca3af}
 
-.profile h2{
-  font-size:1.1rem;
-}
-
-.profile p{
-  font-size:.85rem;
-  color:#9ca3af;
-}
-
-/* =====================================================
-   MENU
-===================================================== */
-.menu{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
+.menu{display:flex;flex-direction:column;gap:6px}
 .menu button{
-  background:none;
-  border:none;
+  background:none;border:none;
   color:#cbd5f5;
   padding:12px 14px;
   border-radius:10px;
@@ -102,66 +61,53 @@ a{
   font-size:.95rem;
   transition:.2s;
 }
-
 .menu button:hover,
 .menu button.active{
   background:#111827;
   color:#22c55e;
 }
 
-/* =====================================================
-   SIDEBAR FOOTER ICONS
-===================================================== */
 .sidebar-footer{
   margin-top:auto;
   display:flex;
   justify-content:center;
   gap:18px;
 }
-
 .sidebar-footer a{
   color:#9ca3af;
   font-size:1.25rem;
   transition:.2s;
 }
+.sidebar-footer a:hover{color:#22c55e}
 
-.sidebar-footer a:hover{
-  color:#22c55e;
-}
-
-/* =====================================================
-   MAIN CONTENT
-===================================================== */
+/* ===== MAIN ===== */
 .main{
   padding:36px 48px;
   overflow-y:auto;
   z-index:2;
   position:relative;
+  height:100vh;
 }
+.view{display:none}
+.view.active{display:block}
 
-.view{
-  display:none;
-}
-
-.view.active{
-  display:block;
-}
-
-/* =====================================================
-   SEARCH BAR (STICKY HEADER)
-===================================================== */
+/* ===== SEARCH BAR ===== */
 .search-bar{
   position:sticky;
-  top:0;
-  z-index:10;
-  background:rgba(11,15,20,.85);
-  backdrop-filter:blur(6px);
-  padding:12px 0 18px;
-  margin-bottom:24px;
+  top:20px;
+  z-index:50;
   display:flex;
   justify-content:flex-end;
+  margin-bottom:26px;
+  transition:all 0.4s ease;
+  opacity:1;
+  transform:translateY(0);
 }
-
+.search-bar.hidden{
+  opacity:0;
+  transform:translateY(-100px);
+  pointer-events:none;
+}
 .search-box{
   background:#020617;
   border:1px solid #111827;
@@ -170,42 +116,33 @@ a{
   display:flex;
   align-items:center;
   gap:10px;
-  min-width:280px;
+  color:#9ca3af;
+  min-width:260px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);
 }
-
-.search-box i{
-  color:#22c55e;
-}
-
+.search-box i{color:#22c55e}
 .search-box input{
-  background:none;
-  border:none;
-  outline:none;
-  color:#e5e7eb;
-  width:100%;
+  background:none;border:none;outline:none;
+  color:#e5e7eb;width:100%;
+  font-size:0.95rem;
 }
 
-/* =====================================================
-   HOME
-===================================================== */
+/* ===== HOME ===== */
 .hero{
   margin-bottom:26px;
 }
-
 .hero h1{
-  font-size:2.7rem;
+  font-size:clamp(2rem, 5vw, 2.7rem);
   margin-bottom:12px;
 }
-
 .hero p{
   max-width:760px;
   color:#9ca3af;
   line-height:1.9;
+  font-size:clamp(0.9rem, 2vw, 1rem);
 }
 
-/* =====================================================
-   DIVIDER
-===================================================== */
+/* ===== GREEN DIVIDER ===== */
 .divider{
   width:60%;
   height:1px;
@@ -217,23 +154,20 @@ a{
   box-shadow:0 0 22px rgba(34,197,94,.6);
 }
 
-/* =====================================================
-   CARDS
-===================================================== */
+/* ===== CARDS ===== */
 .cards{
   display:flex;
   flex-direction:column;
   gap:26px;
 }
-
 .card{
   background:#020617;
   border-radius:20px;
   padding:30px;
   position:relative;
   transition:.3s;
+  display:block;
 }
-
 .card::before{
   content:"";
   position:absolute;
@@ -244,83 +178,75 @@ a{
     transparent 65%);
   opacity:.55;
 }
-
 .card:hover{
   transform:translateY(-6px);
   box-shadow:0 0 45px rgba(34,197,94,.4);
 }
-
 .card h3{
   margin-bottom:10px;
+  font-size:clamp(1.1rem, 2.5vw, 1.3rem);
 }
-
-.card p{
-  color:#9ca3af;
-  line-height:1.7;
-}
-
+.card p{color:#9ca3af;line-height:1.7; font-size:0.95rem;}
 .card-meta{
   margin-top:14px;
   font-size:.8rem;
   color:#6b7280;
 }
 
-/* =====================================================
-   WRITEUPS
-===================================================== */
-.writeup-section{
-  margin-bottom:54px;
-}
-
+/* ===== WRITEUPS ===== */
+.writeup-section{margin-bottom:54px}
 .writeup-section h2{
   margin-bottom:18px;
   color:#22c55e;
+  font-size:clamp(1.2rem, 3vw, 1.5rem);
 }
-
 .writeup-list{
   display:flex;
   flex-direction:column;
   gap:18px;
 }
 
-/* =====================================================
-   ABOUT
-===================================================== */
+/* ===== ABOUT ===== */
 .about{
   max-width:900px;
   line-height:1.95;
 }
-
+.about h2{
+  font-size:clamp(1.5rem, 4vw, 2rem);
+  margin-bottom:20px;
+}
+.about p{
+  font-size:clamp(0.95rem, 2vw, 1.05rem);
+}
 .about ul{
   margin-top:16px;
   padding-left:18px;
   color:#9ca3af;
+  font-size:clamp(0.9rem, 2vw, 1rem);
 }
-
-.about li{
-  margin-bottom:8px;
+.about li{margin-bottom:8px}
+.tags{
+  margin-top:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
-
 .tags span{
   display:inline-block;
   background:#052e16;
   color:#22c55e;
   padding:6px 14px;
   border-radius:20px;
-  margin:6px 6px 0 0;
-  font-size:.85rem;
+  font-size:clamp(0.8rem, 1.5vw, 0.85rem);
 }
 
-/* =====================================================
-   CONTACT
-===================================================== */
+/* ===== CONTACT ===== */
 .contact-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
   max-width:900px;
 }
-
 .contact-item{
   display:flex;
   align-items:center;
@@ -329,79 +255,188 @@ a{
   padding:18px 22px;
   border-radius:14px;
   transition:.3s;
+  font-size:clamp(0.9rem, 2vw, 1rem);
 }
-
 .contact-item:hover{
   transform:translateY(-6px);
   box-shadow:0 0 28px rgba(34,197,94,.35);
 }
-
 .contact-item i{
   font-size:1.4rem;
   color:#22c55e;
 }
 
-/* =====================================================
-   MOBILE & TABLET FIX (IMPORTANT)
-===================================================== */
-@media(max-width:900px){
+/* ===== MOBILE & RESPONSIVE FIX ===== */
+@media(max-width:1200px){
+  .contact-list{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 
+@media(max-width:900px){
   body{
     grid-template-columns:1fr;
+    grid-template-rows:auto 1fr;
+    height:100vh;
+    overflow:auto;
   }
-
   .sidebar{
     flex-direction:row;
     align-items:center;
     justify-content:space-between;
-    padding:14px 16px;
-    border-right:none;
-    border-bottom:1px solid #111827;
+    padding:14px 18px;
+    position:sticky;
+    top:0;
+    z-index:100;
   }
-
-  .profile{
-    display:none;
-  }
-
+  .profile{display:none}
   .menu{
     flex-direction:row;
-    gap:6px;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
   }
-
   .menu button{
-    font-size:.8rem;
-    padding:8px 10px;
+    font-size:clamp(0.8rem, 2vw, 0.85rem);
+    padding:10px;
+    white-space:nowrap;
   }
+  .sidebar-footer{
+    margin-top:0;
+    gap:12px;
+  }
+  .main{
+    padding:20px;
+    height:auto;
+    overflow-y:visible;
+  }
+  .search-bar{
+    position:sticky;
+    top:80px;
+    justify-content:center;
+    margin-top:10px;
+    margin-bottom:20px;
+  }
+  .search-box{
+    width:100%;
+    min-width:auto;
+  }
+  .cards{
+    gap:20px;
+  }
+  .card{
+    padding:20px;
+  }
+  .divider{
+    width:80%;
+    margin:20px auto 30px;
+  }
+}
 
+@media(max-width:768px){
+  .hero h1{
+    font-size:1.8rem;
+  }
+  .hero p{
+    font-size:0.95rem;
+  }
+  .contact-list{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .contact-item{
+    padding:15px 18px;
+  }
+  .writeup-section{
+    margin-bottom:40px;
+  }
+  .about ul{
+    padding-left:15px;
+  }
+}
+
+@media(max-width:480px){
+  .sidebar{
+    padding:12px 10px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .menu{
+    gap:5px;
+  }
+  .menu button{
+    padding:8px 10px;
+    font-size:0.8rem;
+  }
+  .main{
+    padding:15px;
+  }
+  .search-bar{
+    top:70px;
+  }
+  .card{
+    padding:15px;
+    border-radius:15px;
+  }
+  .card h3{
+    font-size:1.1rem;
+  }
+  .card p{
+    font-size:0.9rem;
+  }
+  .tags span{
+    padding:5px 10px;
+    font-size:0.8rem;
+  }
+  .contact-item{
+    padding:12px 15px;
+    font-size:0.9rem;
+  }
+  .contact-item i{
+    font-size:1.2rem;
+  }
+}
+
+@media(max-height:600px) and (orientation:landscape){
+  .sidebar{
+    padding:15px 12px;
+  }
+  .profile img{
+    width:80px;
+    height:80px;
+  }
+  .menu button{
+    padding:8px 10px;
+    font-size:0.85rem;
+  }
   .main{
     padding:20px;
   }
+}
 
-  .search-bar{
-    justify-content:center;
+/* Fix for very small screens */
+@media(max-width:360px){
+  .menu button{
+    font-size:0.75rem;
+    padding:6px 8px;
   }
-
   .search-box{
-    width:100%;
-    min-width:unset;
+    padding:8px 12px;
   }
-
-  .contact-list{
-    grid-template-columns:1fr;
+  .search-box input{
+    font-size:0.9rem;
   }
 }
 </style>
 </head>
 
 <body>
-
 <canvas id="bg"></canvas>
 
 <aside class="sidebar">
-
   <div class="profile">
-    <img src="assets/images/luffy.jpg">
-    <h2>Aladeb Ali</h2>
+    <img src="profile.jpg">
+    <h2>Aladeb Ahmad</h2>
     <p>Red Team Operator</p>
   </div>
 
@@ -421,22 +456,19 @@ a{
   </div>
 
   <div class="sidebar-footer">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-telegram"></i></a>
+    <a href="https://github.com/USERNAME" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/USERNAME" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://t.me/USERNAME" target="_blank"><i class="fab fa-telegram"></i></a>
   </div>
-
 </aside>
 
 <main class="main">
 
-<!-- HOME -->
 <section id="home" class="view active">
-
-  <div class="search-bar">
+  <div class="search-bar" id="searchBar">
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search labs, writeups..." oninput="liveSearch(this)">
+      <input type="text" placeholder="Search labs, writeups..." onkeyup="liveSearch(this)">
     </div>
   </div>
 
@@ -444,7 +476,8 @@ a{
     <h1>Red Team Portfolio</h1>
     <p>
       Offensive security practitioner specialized in real-world attack simulation,
-      Active Directory exploitation, web application security, and post-exploitation techniques.
+      Active Directory exploitation, web application security, and post-exploitation
+      techniques. All labs are documented with professional technical writeups.
     </p>
   </div>
 
@@ -453,56 +486,71 @@ a{
   <div class="cards">
     <a href="#" class="card searchable">
       <h3>Hack The Box – Artificial</h3>
-      <p>Linux compromise, enumeration, privilege escalation.</p>
-      <div class="card-meta">HTB · Linux</div>
+      <p>Complete compromise of a Linux host including enumeration, credential reuse,
+      privilege escalation and operational notes.</p>
+      <div class="card-meta">HTB · Linux · PrivEsc</div>
     </a>
 
     <a href="#" class="card searchable">
       <h3>TryHackMe – Active Directory</h3>
-      <p>Kerberos, SMB relay, domain takeover.</p>
-      <div class="card-meta">THM · AD</div>
+      <p>Kerberos abuse, SMB relay, lateral movement, and domain administrator takeover.</p>
+      <div class="card-meta">THM · AD · Red Team</div>
     </a>
   </div>
-
 </section>
 
-<!-- WRITEUPS -->
 <section id="writeups" class="view">
-
-  <div class="search-bar">
+  <div class="search-bar" id="searchBar2">
     <div class="search-box">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search writeups..." oninput="liveSearch(this)">
+      <input type="text" placeholder="Search writeups..." onkeyup="liveSearch(this)">
     </div>
   </div>
 
   <div class="writeup-section">
     <h2>TryHackMe</h2>
     <div class="writeup-list">
+      <a href="#" class="card searchable">Network Services Deep Dive</a>
       <a href="#" class="card searchable">Windows Privilege Escalation</a>
-      <a href="#" class="card searchable">Network Services</a>
     </div>
   </div>
 
   <div class="writeup-section">
     <h2>Hack The Box</h2>
     <div class="writeup-list">
-      <a href="#" class="card searchable">Linux Enumeration</a>
-      <a href="#" class="card searchable">AD Attacks</a>
+      <a href="#" class="card searchable">Linux Enumeration Methodology</a>
+      <a href="#" class="card searchable">Active Directory Attacks</a>
     </div>
   </div>
 
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="view">
-  <div class="about">
-    <h2>About Me</h2>
-    <p>Red Team operator focused on realistic adversary simulation.</p>
+  <div class="writeup-section">
+    <h2>Notes & Research</h2>
+    <div class="writeup-list">
+      <a href="#" class="card searchable">Web Exploitation Notes</a>
+      <a href="#" class="card searchable">Red Team OPSEC</a>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<section id="about" class="view">
+  <div class="about">
+    <h2>About Me</h2>
+    <p>
+      Red Team operator with hands-on experience in offensive security labs and
+      enterprise-style attack paths. Focused on realistic adversary simulation.
+    </p>
+    <ul>
+      <li>Active Directory attacks & lateral movement</li>
+      <li>Linux & Windows privilege escalation</li>
+      <li>Web application exploitation</li>
+    </ul>
+    <div class="tags">
+      <span>Red Team</span><span>Pentesting</span><span>AD</span>
+      <span>Linux</span><span>Web</span>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="view">
   <h2>Contact</h2>
   <div class="contact-list">
@@ -518,9 +566,6 @@ a{
 </main>
 
 <script>
-/* =====================================================
-   VIEW SWITCHER
-===================================================== */
 function showView(id,btn){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -528,21 +573,38 @@ function showView(id,btn){
   btn.classList.add('active');
 }
 
-/* =====================================================
-   LIVE SEARCH (REAL)
-===================================================== */
+/* ===== LIVE SEARCH ===== */
 function liveSearch(input){
-  const q = input.value.toLowerCase();
+  const query=input.value.toLowerCase();
   document.querySelectorAll('.searchable').forEach(el=>{
-    el.style.display = el.innerText.toLowerCase().includes(q)
-      ? "block"
-      : "none";
+    el.style.display=el.innerText.toLowerCase().includes(query)?"block":"none";
   });
 }
 
-/* =====================================================
-   INTERACTIVE BACKGROUND
-===================================================== */
+/* ===== SEARCH BAR HIDE/SHOW ===== */
+let lastScrollTop = 0;
+const searchBars = document.querySelectorAll('.search-bar');
+const mainElement = document.querySelector('.main');
+
+mainElement.addEventListener('scroll', function() {
+  const scrollTop = mainElement.scrollTop;
+  
+  if (scrollTop > lastScrollTop && scrollTop > 100) {
+    // Scrolling down & past 100px - hide search bar
+    searchBars.forEach(bar => {
+      bar.classList.add('hidden');
+    });
+  } else if (scrollTop < lastScrollTop || scrollTop <= 50) {
+    // Scrolling up or at top - show search bar
+    searchBars.forEach(bar => {
+      bar.classList.remove('hidden');
+    });
+  }
+  
+  lastScrollTop = scrollTop;
+});
+
+/* ===== INTERACTIVE BACKGROUND ===== */
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
 let w,h,pts=[],mouse={x:0,y:0};
@@ -551,10 +613,9 @@ function resize(){
   w=canvas.width=innerWidth;
   h=canvas.height=innerHeight;
 }
-resize();
-addEventListener("resize",resize);
+resize();onresize=resize;
 
-for(let i=0;i<160;i++){
+for(let i=0;i<150;i++){
   pts.push({
     x:Math.random()*w,
     y:Math.random()*h,
@@ -573,20 +634,18 @@ function draw(){
   for(let p of pts){
     let dx=p.x-mouse.x,dy=p.y-mouse.y;
     let dist=Math.hypot(dx,dy);
-    if(dist<140){
+    if(dist<150){
       p.vx+=dx/dist*0.01;
       p.vy+=dy/dist*0.01;
     }
-    p.x+=p.vx;
-    p.y+=p.vy;
-
+    p.x+=p.vx;p.y+=p.vy;
     if(p.x<0||p.x>w)p.vx*=-1;
     if(p.y<0||p.y>h)p.vy*=-1;
 
     for(let q of pts){
       let d=Math.hypot(p.x-q.x,p.y-q.y);
-      if(d<140){
-        ctx.strokeStyle=`rgba(255,255,255,${(1-d/140)*0.12})`;
+      if(d<150){
+        ctx.strokeStyle=`rgba(255,255,255,${(1-d/150)*0.12})`;
         ctx.beginPath();
         ctx.moveTo(p.x,p.y);
         ctx.lineTo(q.x,q.y);
