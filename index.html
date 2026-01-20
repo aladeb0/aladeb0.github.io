@@ -80,6 +80,45 @@ a{text-decoration:none;color:inherit}
 }
 .sidebar-footer a:hover{color:#22c55e}
 
+/* ===== MOBILE BOTTOM BAR ===== */
+.mobile-bottom-bar{
+  display:none;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(2,6,23,0.95);
+  backdrop-filter:blur(10px);
+  border-top:1px solid #111827;
+  padding:12px 20px;
+  z-index:1000;
+  align-items:center;
+  justify-content:space-between;
+}
+.mobile-bottom-icons{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+.mobile-bottom-icons a{
+  color:#9ca3af;
+  font-size:1.3rem;
+  transition:color 0.3s;
+}
+.mobile-bottom-icons a:hover{
+  color:#22c55e;
+}
+.mobile-id{
+  color:#22c55e;
+  font-size:0.85rem;
+  font-weight:500;
+  letter-spacing:0.5px;
+  padding:5px 12px;
+  background:rgba(34,197,94,0.1);
+  border-radius:8px;
+  border:1px solid rgba(34,197,94,0.3);
+}
+
 /* ===== MAIN ===== */
 .main{
   padding:36px 48px;
@@ -87,6 +126,7 @@ a{text-decoration:none;color:inherit}
   z-index:2;
   position:relative;
   height:100vh;
+  padding-bottom:80px;
 }
 .view{display:none}
 .view.active{display:block}
@@ -302,13 +342,16 @@ a{text-decoration:none;color:inherit}
     white-space:nowrap;
   }
   .sidebar-footer{
-    margin-top:0;
-    gap:12px;
+    display:none;
+  }
+  .mobile-bottom-bar{
+    display:flex;
   }
   .main{
     padding:20px;
     height:auto;
     overflow-y:visible;
+    padding-bottom:70px;
   }
   .search-bar{
     position:sticky;
@@ -353,6 +396,19 @@ a{text-decoration:none;color:inherit}
   .about ul{
     padding-left:15px;
   }
+  .mobile-bottom-bar{
+    padding:10px 16px;
+  }
+  .mobile-bottom-icons{
+    gap:16px;
+  }
+  .mobile-bottom-icons a{
+    font-size:1.2rem;
+  }
+  .mobile-id{
+    font-size:0.8rem;
+    padding:4px 10px;
+  }
 }
 
 @media(max-width:480px){
@@ -370,6 +426,7 @@ a{text-decoration:none;color:inherit}
   }
   .main{
     padding:15px;
+    padding-bottom:65px;
   }
   .search-bar{
     top:70px;
@@ -395,6 +452,19 @@ a{text-decoration:none;color:inherit}
   .contact-item i{
     font-size:1.2rem;
   }
+  .mobile-bottom-bar{
+    padding:8px 12px;
+  }
+  .mobile-bottom-icons{
+    gap:14px;
+  }
+  .mobile-bottom-icons a{
+    font-size:1.1rem;
+  }
+  .mobile-id{
+    font-size:0.75rem;
+    padding:3px 8px;
+  }
 }
 
 @media(max-height:600px) and (orientation:landscape){
@@ -411,6 +481,13 @@ a{text-decoration:none;color:inherit}
   }
   .main{
     padding:20px;
+    padding-bottom:70px;
+  }
+  .mobile-bottom-bar{
+    padding:6px 10px;
+  }
+  .mobile-bottom-icons a{
+    font-size:1.1rem;
   }
 }
 
@@ -425,6 +502,18 @@ a{text-decoration:none;color:inherit}
   }
   .search-box input{
     font-size:0.9rem;
+  }
+  .mobile-bottom-bar{
+    padding:6px 10px;
+  }
+  .mobile-bottom-icons{
+    gap:12px;
+  }
+  .mobile-bottom-icons a{
+    font-size:1rem;
+  }
+  .mobile-id{
+    font-size:0.7rem;
   }
 }
 </style>
@@ -461,6 +550,16 @@ a{text-decoration:none;color:inherit}
     <a href="https://t.me/USERNAME" target="_blank"><i class="fab fa-telegram"></i></a>
   </div>
 </aside>
+
+<!-- Mobile Bottom Bar -->
+<div class="mobile-bottom-bar">
+  <div class="mobile-bottom-icons">
+    <a href="https://github.com/USERNAME" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/USERNAME" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://t.me/USERNAME" target="_blank"><i class="fab fa-telegram"></i></a>
+  </div>
+  <div class="mobile-id">@AladebAhmad</div>
+</div>
 
 <main class="main">
 
