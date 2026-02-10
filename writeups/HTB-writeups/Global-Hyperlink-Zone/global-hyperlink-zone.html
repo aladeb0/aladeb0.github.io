@@ -74,17 +74,7 @@ sequences <span class="token operator">=</span> <span class="token punctuation">
 </ul></div><div class="el-h3"><h3 data-heading="**4.4 Designing the Quantum Circuit**" dir="auto" class="heading" id="**4.4_Designing_the_Quantum_Circuit**_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span><strong>4.4 Designing the Quantum Circuit</strong></h3></div><div class="el-p"><p dir="auto"><strong>Strategy:</strong> Create two independent Bell pairs</p></div><div class="el-ol"><ol>
 <li data-line="0" dir="auto">Entangle qubits 0, 1, and 3 together</li>
 <li data-line="2" dir="auto">Entangle qubits 2 and 4 together separately</li>
-</ol></div><div class="el-p"><p dir="auto"><strong>Circuit Design:</strong></p></div><div class="el-ul"><ul class="has-list-bullet">
-<li data-line="0" dir="auto"><span class="list-bullet"></span>Qubit 0: Put in superposition with Hadamard gate<br>
-</li>
-<li data-line="2" dir="auto"><span class="list-bullet"></span>Qubit 1: Entangle with qubit 0 using CNOT<br>
-</li>
-<li data-line="4" dir="auto"><span class="list-bullet"></span>Qubit 3: Entangle with qubit 0 using CNOT<br>
-</li>
-<li data-line="6" dir="auto"><span class="list-bullet"></span>Qubit 2: Put in different superposition state<br>
-</li>
-<li data-line="8" dir="auto"><span class="list-bullet"></span>Qubit 4: Entangle with qubit 2 using CNOT<br>
-</li>
+
 </ul></div><div class="el-h3"><h3 data-heading="**4.5 Final Instruction Sequence**" dir="auto" class="heading" id="**4.5_Final_Instruction_Sequence**_0"><span class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></span><strong>4.5 Final Instruction Sequence</strong></h3></div><div class="el-p"><p dir="auto">After testing, the winning sequence was confirmed as:</p></div><div class="el-pre"><pre class="language-text"><code data-line="0" class="language-text is-loaded"> H:0;CX:0,1;CX:0,3;H:2;CX:2,4
 </code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto"><strong>Step-by-step explanation:</strong></p></div><div class="el-ol"><ol>
 <li data-line="0" dir="auto"><code>H:0</code> - Puts qubit 0 into superposition (|+⟩ state)</li>
